@@ -34,6 +34,11 @@ def get(val: str):
     return convert_from_string(stdout)
 
 def convert_from_string(data: str):
+    """Convert a string from a PowerShell output stream to an appropriate Python value.
+
+    Args:
+        data (str): the string to convert.
+    """
     if data == 'True':
         return True
     elif data == 'False':
