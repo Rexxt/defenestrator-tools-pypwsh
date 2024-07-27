@@ -19,8 +19,7 @@ class ISOInfoWrapper:
 
         self.is_mounted: bool = bool(self.device_path)
         if self.is_mounted:
-            info = pwsh.get(f'(Get-DiskImage -DevicePath "{self.device_path}" | Get-Volume).DriveLetter')
-            self.drive_letter: str|None = info.stdout.decode('utf-8').strip()
+            self.drive_letter: str|None = pwsh.get(f'(Get-DiskImage -DevicePath "{self.device_path}" | Get-Volume).DriveLetter').strip()
         else:
             self.drive_letter = None
 
@@ -78,4 +77,5 @@ if __name__ == '__main__':
     disk = ISOInfoWrapper(info)
     print(disk.drive_letter)
     disk.dismount()
+    
     #print(disk.dismount().mount().dismount())
